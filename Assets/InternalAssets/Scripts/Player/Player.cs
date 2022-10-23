@@ -5,8 +5,21 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public AnimalCharacter animalSelected;
-    public int rolledDice;
-    public List<string> buffs = new List<string>(); //if player turn is finished, reset buffs
+    public  int rolledDice;
+    public float turnDuration;
+    public  List<string> buffs = new List<string>(); //if player turn is finished, reset buffs
+
+    public float TurnDuration
+    {
+        get
+        {
+            return turnDuration;
+        }
+        set
+        {
+            turnDuration = value;
+        }
+    }
 
     public AnimalCharacter AnimalSelected
     {

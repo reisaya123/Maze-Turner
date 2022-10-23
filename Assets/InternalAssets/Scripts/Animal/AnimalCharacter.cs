@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AnimalCharacter : MonoBehaviour
 {
+    public GameObject model;
     public string animalName;
     public float baseDamage;
     public float moveSpeed;
@@ -41,5 +42,6 @@ public class AnimalCharacter : MonoBehaviour
             moveSpeed = value;
         }
     }
+    
 
 }

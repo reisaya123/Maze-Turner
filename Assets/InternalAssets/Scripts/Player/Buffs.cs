@@ -25,6 +25,7 @@ public class Buffs : MonoBehaviour
         {
             if (count == newDuration)
             {
+                //remove increaseMovingSpeed
                 yield break;
             }
             yield return new WaitForSeconds(1f);
