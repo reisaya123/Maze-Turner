@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    // public GameState state;
+    public GameState state;
     RollDice rollDice;
     int sceneNum;
     string player1SelectedAnimal;
@@ -26,30 +26,34 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // private void update()
-    // {
-    //     switch (state)
-    //     {
-    //         case GameState.RollDice:
-    //             if (Input.GetKey(KeyCode.Space))
-    //             {
-    //                 rollDice.Rolling();
+    private void update()
+    {
+        switch (state)
+        {
+            case GameState.RollDice:
+                if (Input.GetKey(KeyCode.Space))
+                {
+                    rollDice.Rolling();
+                }
+                break;
+            case GameState.PlayerTurn:
+                break;
+            case GameState.OtherPlayerTurn:
+                break;
+        }
+    }
 
-    //             }
-    //             break;
-    //         case GameState.PlayerTurn:
-    //             break;
-    //         case GameState.OtherPlayerTurn:
-    //             break;
-    //     }
-    // }
+    public enum GameState
+    {
+        RollDice,
+        PlayerTurn,
+        OtherPlayerTurn,
+    }
 
-    // public enum GameState
-    // {
-    //     RollDice,
-    //     PlayerTurn,
-    //     OtherPlayerTurn,
-    // }
+    public float GetTurnDuration(int diceNumber){
+        int duration = diceNumber * 10;
+        return duration;
+    }
 
     private void Start()
     {
@@ -89,18 +93,22 @@ public class GameManager : MonoBehaviour
     {
         foreach (var model in animalModels)
         {
-            Debug.Log(model.name);
-            if (model.name == ($"{player1SelectedAnimal}Model"))
+
+            if (model.name.ToUpper() == ($"{player1SelectedAnimal}Model").ToUpper())
             {
-                GameObject player1 = Instantiate(new GameObject("Player1"));
                 GameObject player1Animal = Instantiate(model);
-                player1Animal.transform.parent = player1.transform;
-                player1Animal.name = player1SelectedAnimal;
+                player1Animal.AddComponent<Player>();
+                player1Animal.GetComponent<Player>().playerName = "Player1";
+                player1Animal.name = "Player1";
             }
-            else if (model.name == ($"{player2SelectedAnimal}Model"))
+
+            if (model.name.ToUpper() == ($"{player2SelectedAnimal}Model").ToUpper())
             {
+
                 GameObject player2Animal = Instantiate(model);
-                player2Animal.name = player2SelectedAnimal;
+                player2Animal.AddComponent<Player>();
+                player2Animal.GetComponent<Player>().playerName = "Player2";
+                player2Animal.name = "Player2";
             }
         }
     }

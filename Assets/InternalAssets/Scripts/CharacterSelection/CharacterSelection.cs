@@ -11,7 +11,7 @@ public class CharacterSelection : MonoBehaviour
     public float time;
 
     GameObject selectedAnimal;
-    int index = 0;
+    int index;
 
     public string Player
     {
@@ -29,6 +29,7 @@ public class CharacterSelection : MonoBehaviour
     void Start()
     {
         GetAllAnimals();
+        int index = 0;
         selectedAnimal = animals[index];
         StartCoroutine(Selection());
         characterSelectionUI.SelectAnimalUI(transform.name, index, true);
@@ -130,12 +131,10 @@ public class CharacterSelection : MonoBehaviour
             {
                 selectedAnimal.SetActive(false);
                 characterSelectionUI.SelectAnimalUI(transform.name, prevSelectedIndex, false);
-                // currentSelectedAnimalUI.GetComponent<Image>().color = new Color(255,255,255,255);
 
                 selectedAnimal = animals[index];
                 selectedAnimal.SetActive(true);
                 characterSelectionUI.SelectAnimalUI(transform.name, index, true);
-                // currentSelectedAnimalUI.GetComponent<Image>().color = new Color(123,123,123,255);
             }
 
             Selected(selectedAnimal.name);

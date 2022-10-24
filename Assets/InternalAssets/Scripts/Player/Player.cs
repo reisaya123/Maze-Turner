@@ -4,10 +4,23 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public string playerName;
     public AnimalCharacter animalSelected;
     public  int rolledDice;
     public float turnDuration;
     public  List<string> buffs = new List<string>(); //if player turn is finished, reset buffs
+
+    public string PlayerName
+    {
+        get
+        {
+            return playerName;
+        }
+        set
+        {
+            playerName = value;
+        }
+    }
 
     public float TurnDuration
     {

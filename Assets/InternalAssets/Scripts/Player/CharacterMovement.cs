@@ -42,8 +42,8 @@ public class CharacterMovement : MonoBehaviour
 
     private void Start()
     {
-        characterController = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
+        characterController = transform.GetComponent<CharacterController>();
+        animator =  transform.GetComponent<Animator>();
         playerControls.Player.Player1Move.started += ctx => OnMove(ctx);
         // playerControls.Player.Player1Move.canceled += ctx => OnMove(ctx);
     }

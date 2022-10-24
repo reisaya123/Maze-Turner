@@ -13,6 +13,7 @@ public class CameraMovement : MonoBehaviour
 
     float rotationMin = -5f;
     float rotationMax = 80f;
+    [SerializeField] float zoomOut = 5f;
     [SerializeField] float smoothTime = 0.12f;
     Vector3 currentVel;
 
@@ -30,8 +31,9 @@ public class CameraMovement : MonoBehaviour
         targetRotation = Vector3.SmoothDamp(targetRotation, new Vector3(horizontalInput, verticalInput), ref currentVel, smoothTime);
         transform.eulerAngles = targetRotation;
         // target.eulerAngles = targetRotation;
+    
         // Quaternion newRotation = Quaternion.Euler(0f,verticalInput,0f);
-        transform.position = target.position - transform.forward * 5f;
+        transform.position = target.position - transform.forward * zoomOut;
 
 
         // transform.rotation = Quaternion.Euler(0f, verticalInput, 0f);
