@@ -3,8 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+<<<<<<< HEAD
   tags:
   - PlayerCam
+=======
+  tags: []
+>>>>>>> 6cfe1ce6f929c5dfedc3f4713cffd92c3b8c028e
   layers:
   - Default
   - TransparentFX
