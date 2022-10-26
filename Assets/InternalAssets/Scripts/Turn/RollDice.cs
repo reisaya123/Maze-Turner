@@ -6,22 +6,28 @@ using UnityEngine.UI;
 public class RollDice : MonoBehaviour
 {
     [SerializeField] Sprite[] dices;
+    Player player;
     Image dice;
     public int rolledDie;
     public bool canRoll;
     // Start is called before the first frame update
     void Start()
     {
-        canRoll = false;
+        player = GetComponent<Player>();
         dice = GetComponent<Image>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        canRoll = GameManager.instance.GetCanRoll(transform.parent.name);
+        if (canRoll)
         {
-            RollTheDice();
+            if ((Input.GetKeyDown(KeyCode.Space) && transform.parent.name == "RollDiceP1") ||
+            (Input.GetKeyDown(KeyCode.RightShift) && transform.parent.name == "RollDiceP2"))
+            {
+                RollTheDice();
+            }
         }
     }
 
@@ -34,12 +40,13 @@ public class RollDice : MonoBehaviour
     {
         int randomDiceSide = 0;
         float time = 0f;
+        canRoll = false;
         while (true)
         {
             if (time >= count)
             {
                 rolledDie = randomDiceSide + 1;
-
+                GameManager.instance.UpdateGameState(GameManager.GameState.PlayerTurn);
                 yield break;
             }
 
@@ -53,9 +60,9 @@ public class RollDice : MonoBehaviour
 
     }
 
-    public int GetRolledDie()
+    public float ConvertDiceValueToTime()
     {
-        return rolledDie;
+        return GameManager.instance.GetTurnDuration(rolledDie);
     }
 
 }

@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public AnimalCharacter animalSelected;
     public  int rolledDice;
     public float turnDuration;
+    public bool myTurn;
     public  List<string> buffs = new List<string>(); //if player turn is finished, reset buffs
 
     public string PlayerName

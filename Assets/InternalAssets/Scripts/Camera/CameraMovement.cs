@@ -16,28 +16,56 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] float zoomOut = 5f;
     [SerializeField] float smoothTime = 0.12f;
     Vector3 currentVel;
+    public List<GameObject> targets;
+    public Transform targetCam;
+    bool targetPlayer;
 
-    public Transform target;
+
+    private void Start()
+    {
+        targetPlayer = false;
+    }
+
+    void Update()
+    {
+        foreach (GameObject target in targets)
+        {
+            if (GameManager.instance.GetState() == GameManager.GameState.RollDice)
+            {
+                targetPlayer = false;
+                if (target.name == "TopCamera")
+                {
+                    targetCam = target.transform;
+                    transform.position = targetCam.transform.position;
+                    transform.rotation = targetCam.rotation;
+                }
+            }
+            // else
+            // {
+            //     //add player 1 or 2
+            //     targetPlayer = true;
+            //     targetCam = target.transform;
+            // }
+        }
+    }
 
     // Update is called once per frame
     void LateUpdate()
     {
 
-        verticalInput += Input.GetAxis("Mouse X") * mouseSensitivity;
-        horizontalInput -= Input.GetAxis("Mouse Y") * mouseSensitivity;
+        if (targetPlayer)
+        {
+            verticalInput += Input.GetAxis("Mouse X") * mouseSensitivity;
+            horizontalInput -= Input.GetAxis("Mouse Y") * mouseSensitivity;
 
-        horizontalInput = Mathf.Clamp(horizontalInput, rotationMin, rotationMax);
+            horizontalInput = Mathf.Clamp(horizontalInput, rotationMin, rotationMax);
 
-        targetRotation = Vector3.SmoothDamp(targetRotation, new Vector3(horizontalInput, verticalInput), ref currentVel, smoothTime);
-        transform.eulerAngles = targetRotation;
-        // target.eulerAngles = targetRotation;
-    
-        // Quaternion newRotation = Quaternion.Euler(0f,verticalInput,0f);
-        transform.position = target.position - transform.forward * zoomOut;
+            targetRotation = Vector3.SmoothDamp(targetRotation, new Vector3(horizontalInput, verticalInput), ref currentVel, smoothTime);
+            transform.eulerAngles = targetRotation;
 
+            transform.position = targetCam.position - transform.forward * zoomOut;
 
-        // transform.rotation = Quaternion.Euler(0f, verticalInput, 0f);
-        // transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime);
-        // player.transform.rotation = Quaternion.Euler(0f, verticalInput, 0f);
+        }
+
     }
 }
