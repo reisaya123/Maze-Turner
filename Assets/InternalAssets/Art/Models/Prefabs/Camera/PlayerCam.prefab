@@ -224,5 +224,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 1
+  zoomOut: 5
   smoothTime: 0.12
+  targets:
+  - {fileID: 7222955397382729750, guid: 89131427f258d9a49b033856192ef1cc, type: 3}
   target: {fileID: 0}
