@@ -27,6 +27,7 @@ public class CharacterAttack : MonoBehaviour
         player.playerName == "Player 2" && Input.GetKeyDown(KeyCode.RightShift))
         {
             transform.GetComponent<Animator>().SetTrigger("Attack");
+            DamageObstacles();
             Debug.Log("Attack!");
         }
     }
