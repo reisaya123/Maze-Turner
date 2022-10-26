@@ -12,6 +12,7 @@ public class CharacterSelection : MonoBehaviour
 
     GameObject selectedAnimal;
     int index;
+    bool hasSelected = false;
 
     public string Player
     {
@@ -53,6 +54,7 @@ public class CharacterSelection : MonoBehaviour
                 {
                     characterSelectionUI.ReadySelectionUI(transform.name);
                     GameManager.instance.ReadyPlayer1(animalName);
+                    hasSelected = true;
 
                 }
             }
@@ -62,7 +64,7 @@ public class CharacterSelection : MonoBehaviour
                 {
                     characterSelectionUI.ReadySelectionUI(transform.name);
                     GameManager.instance.ReadyPlayer2(animalName);
-
+                    hasSelected = true;
                 }
             }
         }
@@ -75,8 +77,12 @@ public class CharacterSelection : MonoBehaviour
         {
             int prevSelectedIndex = index;
 
-            if (player == "player1")
+            if (hasSelected)
+            {
+                yield break;
+            }
 
+            if (player == "player1")
             {
                 if (Input.GetKeyDown(KeyCode.A))
                 {
