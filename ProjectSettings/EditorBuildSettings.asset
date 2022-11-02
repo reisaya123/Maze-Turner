@@ -4,18 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-<<<<<<< HEAD
   m_Scenes:
   - enabled: 1
-    path: Assets/InternalAssets/Scenes/MainMenu1.unity
+    path: Assets/InternalAssets/Scenes/MainMenu.unity
     guid: 917a444019fbe974baae3cf7b89e2116
   - enabled: 1
-    path: Assets/InternalAssets/Scenes/CharacterSelection1.unity
+    path: Assets/InternalAssets/Scenes/CharacterSelection.unity
     guid: 66735cec1455a52489a21819fb5a16ff
   - enabled: 1
-    path: Assets/InternalAssets/Scenes/MazeTurner1.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-=======
-  m_Scenes: []
->>>>>>> 6cfe1ce6f929c5dfedc3f4713cffd92c3b8c028e
+    path: Assets/InternalAssets/Scenes/MazeTurner.unity
+    guid: a33f61b3a0de7b04f8e117f258d21a40
+  - enabled: 1
+    path: Assets/InternalAssets/Scenes/MazeTrial.unity
+    guid: 7a006d71ae638f54391787b950c409f9
   m_configObjects: {}
