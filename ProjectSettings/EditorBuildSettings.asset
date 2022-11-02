@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/InternalAssets/Scenes/MazeTurner1.unity
     guid: a33f61b3a0de7b04f8e117f258d21a40
+  - enabled: 1
+    path: Assets/InternalAssets/Scenes/MazeTrial.unity
+    guid: 7a006d71ae638f54391787b950c409f9
   m_configObjects: {}
