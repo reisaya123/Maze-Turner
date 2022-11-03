@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6650860407778912121}
   - component: {fileID: 6650860407778912120}
   - component: {fileID: 6650860407778912007}
+  - component: {fileID: 2835784174258319594}
   m_Layer: 0
   m_Name: RabbitModel
   m_TagString: Untagged
@@ -53,7 +54,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.51, z: 0.2}
+  m_Center: {x: 0, y: 1.75, z: 0.2}
 --- !u!95 &6650860407778912120
 Animator:
   serializedVersion: 4
@@ -86,9 +87,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 707ea445a4b4d204f854a79b553f1f10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
   motionSmoothTime: 0.25
   move: {x: 0, y: 0, z: 0}
+--- !u!114 &2835784174258319594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176816300693752491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1840461a2626f63459bb6cdf0a328cf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 176816300693752491}
+  animalName: Skippy
+  baseDamage: 50
+  moveSpeed: 3
 --- !u!1 &251629683935772566
 GameObject:
   m_ObjectHideFlags: 0

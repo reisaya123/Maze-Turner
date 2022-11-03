@@ -632,7 +632,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 707ea445a4b4d204f854a79b553f1f10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
   motionSmoothTime: 0.25
   move: {x: 0, y: 0, z: 0}
 --- !u!114 &3169501467514913765
@@ -649,8 +648,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 6873951347033698903}
   animalName: Cheeky Nuggets
-  baseDamage: 150
-  moveSpeed: 150
+  baseDamage: 100
+  moveSpeed: 2
 --- !u!1 &7321647005818358320
 GameObject:
   m_ObjectHideFlags: 0
