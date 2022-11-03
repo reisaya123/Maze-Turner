@@ -14,7 +14,7 @@ public class Buffs : MonoBehaviour
         if (!player.buffs.Contains("IncreaseMovingSpeed"))
         {
             player.buffs.Add("IncreaseMovingSpeed"); //Add UI
-            player.animalSelected.moveSpeed += buffPoints;
+            player.currentMoveSpeed += buffPoints;
         }
         else
         {
@@ -39,7 +39,7 @@ public class Buffs : MonoBehaviour
         if (!player.buffs.Contains("IncreaseDamage"))
         {
             player.buffs.Add("IncreaseDamage"); //Add UI
-            player.animalSelected.baseDamage += buffPoints;
+            player.currentDamage += buffPoints;
         }
         else
         {
@@ -65,7 +65,7 @@ public class Buffs : MonoBehaviour
         if (!player.buffs.Contains("DecreaseMovingSpeed"))
         {
             player.buffs.Add("DecreaseMovingSpeed"); //Add UI
-            player.animalSelected.moveSpeed -= buffPoints;
+            player.currentMoveSpeed -= buffPoints;
         }
         else
         {
@@ -88,7 +88,7 @@ public class Buffs : MonoBehaviour
         if (!player.buffs.Contains("DecreaseDamage"))
         {
             player.buffs.Add("DecreaseDamage"); //Add UI
-            player.animalSelected.baseDamage -= buffPoints;
+            player.currentDamage -= buffPoints;
         }
         else
         {

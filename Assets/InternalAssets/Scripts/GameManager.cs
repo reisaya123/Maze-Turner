@@ -16,8 +16,10 @@ public class GameManager : MonoBehaviour
     string player2SelectedAnimal;
     bool readyPlayer1;
     bool readyPlayer2;
-    float rolledDieP1;
-    float rolledDieP2;
+    int rolledDieP1;
+    int rolledDieP2;
+    string playerTurn;
+    string otherPlayerTurn;
 
 
     public enum GameState
@@ -44,8 +46,8 @@ public class GameManager : MonoBehaviour
         sceneNum = 0;
         readyPlayer1 = false;
         readyPlayer2 = false;
-        rolledDieP1 = 0f;
-        rolledDieP2 = 0f;
+        rolledDieP1 = 0;
+        rolledDieP2 = 0;
     }
 
 
@@ -56,22 +58,19 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case GameState.RollDice:
-                rolledDieP1 = 0f;
-                rolledDieP2 = 0f;
+                rolledDieP1 = 0;
+                rolledDieP2 = 0;
                 canRollP1 = true;
                 canRollP2 = true;
+                playerTurn = "";
                 targetCam = "TopCamera";
 
                 break;
             case GameState.PlayerTurn:
-                //get bool isTurn
-                //get roll die value → convert to time
-                // send player target to camera script
+                targetCam = playerTurn;
                 break;
             case GameState.OtherPlayerTurn:
-                //get bool isTurn
-                //get roll die value → convert to time
-                // send player target to camera script
+                targetCam = otherPlayerTurn;
                 break;
         }
     }
@@ -79,6 +78,24 @@ public class GameManager : MonoBehaviour
     public GameState GetState()
     {
         return state;
+    }
+
+    public string ChangeCameraTarget()
+    {
+        return targetCam;
+    }
+
+    public bool CheckTurn(string playerName)
+    {
+        if ((playerTurn == playerName && state == GameState.PlayerTurn) ||
+        (otherPlayerTurn == playerName && state == GameState.OtherPlayerTurn))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public bool GetCanRoll(string playerDice)
@@ -101,26 +118,41 @@ public class GameManager : MonoBehaviour
         if (playerDice == "RollDiceP1")
         {
             rolledDieP1 = diceNumber;
-            if (rolledDieP2 != 0f)
-            {
-
-            }
-
         }
         else if (playerDice == "RollDiceP2")
         {
             rolledDieP2 = diceNumber;
-            if (rolledDieP1 != 0f)
+        }
+
+        if (rolledDieP2 != 0f && rolledDieP1 != 0f)
+        {
+            if (rolledDieP1 > rolledDieP2)
             {
-
+                playerTurn = "Player1";
+                otherPlayerTurn = "Player2";
             }
-
+            else
+            {
+                playerTurn = "Player2";
+                otherPlayerTurn = "Player1";
+            }
+            UpdateGameState(GameState.PlayerTurn);
         }
     }
 
-    public float GetTurnDuration(int diceNumber)
+    public int GetTurnDuration(string playerName)
     {
-        int duration = diceNumber * 10;
+        int duration = 0;
+        if (playerName == "Player1")
+        {
+            duration = rolledDieP1 * 15;
+
+        }
+        else if (playerName == "Player2")
+        {
+            duration = rolledDieP2 * 15;
+        }
+        Debug.Log(duration);
         return duration;
     }
 
@@ -160,7 +192,6 @@ public class GameManager : MonoBehaviour
 
         foreach (var model in animalModels)
         {
-
             if (model.name.ToUpper() == ($"{player1SelectedAnimal}Model").ToUpper())
             {
                 GameObject player1Animal = Instantiate(model);

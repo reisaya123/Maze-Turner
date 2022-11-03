@@ -5,11 +5,13 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public string playerName;
-    public AnimalCharacter animalSelected;
-    public  int rolledDice;
-    public float turnDuration;
+    public int rolledDice;
+    public int turnDuration;
     public bool myTurn;
-    public  List<string> buffs = new List<string>(); //if player turn is finished, reset buffs
+    public AnimalCharacter animalCharacter;
+    public float currentMoveSpeed;
+    public float currentDamage;
+    public List<string> buffs = new List<string>(); //if player turn is finished, reset buffs
 
     public string PlayerName
     {
@@ -23,44 +25,42 @@ public class Player : MonoBehaviour
         }
     }
 
-    public float TurnDuration
-    {
-        get
-        {
-            return turnDuration;
-        }
-        set
-        {
-            turnDuration = value;
-        }
-    }
-
-    public AnimalCharacter AnimalSelected
-    {
-        get
-        {
-            return animalSelected;
-        }
-        set
-        {
-            animalSelected = value;
-        }
-    }
-
-    public void SelectAnimal(AnimalCharacter animalCharacter)
-    {
-        animalSelected = animalCharacter;
-    }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        myTurn = false;
+        animalCharacter = transform.GetComponent<AnimalCharacter>();
+        currentMoveSpeed = animalCharacter.moveSpeed;
+        currentDamage = animalCharacter.baseDamage;
+        StartCoroutine(CheckIfTurn());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        myTurn = GameManager.instance.CheckTurn(playerName);
+        // Debug.Log("TURN DURATION:" + turnDuration.ToString());
+    }
+
+    bool MyTurn()
+    {
+        if (myTurn)
+        {
+            turnDuration = GameManager.instance.GetTurnDuration(playerName);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    IEnumerator CheckIfTurn()
+    {
+        yield return new WaitUntil(MyTurn);
+
+        currentMoveSpeed = animalCharacter.moveSpeed;
+        currentDamage = animalCharacter.baseDamage;
     }
 }

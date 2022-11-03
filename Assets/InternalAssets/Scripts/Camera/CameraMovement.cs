@@ -11,8 +11,8 @@ public class CameraMovement : MonoBehaviour
     float verticalInput;
     float horizontalInput;
 
-    float rotationMin = -5f;
-    float rotationMax = 80f;
+    float rotationMin = 0f;
+    float rotationMax = 50f;
     [SerializeField] float zoomOut = 5f;
     [SerializeField] float smoothTime = 0.12f;
     Vector3 currentVel;
@@ -40,12 +40,14 @@ public class CameraMovement : MonoBehaviour
                     transform.rotation = targetCam.rotation;
                 }
             }
-            // else
-            // {
-            //     //add player 1 or 2
-            //     targetPlayer = true;
-            //     targetCam = target.transform;
-            // }
+            else
+            {
+                if (target.name == GameManager.instance.ChangeCameraTarget())
+                {
+                    targetPlayer = true;
+                    targetCam = target.transform;
+                }
+            }
         }
     }
 

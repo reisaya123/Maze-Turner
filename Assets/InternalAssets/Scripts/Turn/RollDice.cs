@@ -46,7 +46,8 @@ public class RollDice : MonoBehaviour
             if (time >= count)
             {
                 rolledDie = randomDiceSide + 1;
-                GameManager.instance.UpdateGameState(GameManager.GameState.PlayerTurn);
+                GameManager.instance.CompareRollDie(rolledDie,transform.parent.name);
+
                 yield break;
             }
 
@@ -54,15 +55,8 @@ public class RollDice : MonoBehaviour
             dice.sprite = dices[randomDiceSide];
             time += .1f;
 
-            Debug.Log("Rolled Dice:" + (randomDiceSide + 1).ToString());
             yield return new WaitForSeconds(.1f);
         }
-
-    }
-
-    public float ConvertDiceValueToTime()
-    {
-        return GameManager.instance.GetTurnDuration(rolledDie);
     }
 
 }

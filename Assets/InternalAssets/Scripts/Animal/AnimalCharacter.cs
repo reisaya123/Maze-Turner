@@ -9,39 +9,4 @@ public class AnimalCharacter : MonoBehaviour
     public float baseDamage;
     public float moveSpeed;
 
-    public string AnimalName
-    {
-        get
-        {
-            return animalName;
-        }
-        set
-        {
-            animalName = value;
-        }
-    }
-    public float BaseDamage
-    {
-        get
-        {
-            return baseDamage;
-        }
-        set
-        {
-            baseDamage = value;
-        }
-    }
-    public float MoveSpeed
-    {
-        get
-        {
-            return moveSpeed;
-        }
-        set
-        {
-            moveSpeed = value;
-        }
-    }
-    
-
 }

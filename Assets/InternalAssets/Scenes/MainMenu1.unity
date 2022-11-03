@@ -1302,6 +1302,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b901ba00a701a547ad4054286e7c181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
+  canRollP1: 0
+  canRollP2: 0
+  targetCam: 
 --- !u!4 &2003800500
 Transform:
   m_ObjectHideFlags: 0
