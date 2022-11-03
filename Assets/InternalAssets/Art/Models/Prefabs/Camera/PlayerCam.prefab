@@ -85,7 +85,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3436532474248295905}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!114 &3436532474248295908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,4 +228,4 @@ MonoBehaviour:
   smoothTime: 0.12
   targets:
   - {fileID: 7222955397382729750, guid: 89131427f258d9a49b033856192ef1cc, type: 3}
-  target: {fileID: 0}
+  targetCam: {fileID: 0}
